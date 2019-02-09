@@ -104,25 +104,25 @@ def parse_book(message):
             sell_stock(max(bond_lowest_sell + 1, bond_highest_buy), inventory['BOND'], "BOND")
 
     elif message["symbol"] == "VALBZ":
-        #valbz_market_sell_prices = message["sell"]
-        #valbz_market_buy_prices = message["buy"#
+        valbz_market_sell_prices = message["sell"]
+        valbz_market_buy_prices = message["buy"]
 
-        if len(bond_market_sell_prices) == 0 or len(bond_market_buy_prices) == 0:
+        if len(valbz_market_sell_prices) < 3 or len(valbz_market_buy_prices) < 3:
             return
-        bond_lowest_sell = bond_market_sell_prices[0][0]
-        bond_lowest_sell_amount = bond_market_sell_prices[0][1]
-        bond_highest_buy = bond_market_buy_prices[0][0]
-        bond_highest_buy_amount = bond_market_buy_prices[0][1]
-        if bond_lowest_sell < 1001:
-            buy_stock(bond_lowest_sell, min(bond_lowest_sell_amount, 100 - inventory['BOND']), "BOND") # can only have 100 bonds max
-            sell_stock(max(bond_lowest_sell + 1, bond_highest_buy), inventory['BOND'], "BOND")
+        valbz_lowest_sell = valbz_market_sell_prices[0][0]
+        valbz_lowest_sell_amount = valbz_market_sell_prices[0][1]
+        valbz_highest_buy = valbz_market_buy_prices[0][0]
+        valbz_highest_buy_amount = valbz_market_buy_prices[0][1]
+        #if valbz_lowest_sell < 1001:
+        buy_stock(valbz_lowest_sell, min(valbz_lowest_sell_amount, 100 - inventory['VALBZ']), "valbz") # can only have 100 valbzs max
+        sell_stock(max(valbz_lowest_sell + 1, valbz_highest_buy), inventory['VALBZ'], "valbz")
 
-    bond_lowest_sell_VALBZ = message["sell"]
-        bond_highest_buy_VALBZ = message["buy"]
-        if len(bond_lowest_sell__VALBZ) == 0 or len(bond_highest_buy_VALBZ == 0):
-            return
-        bond_highest_buy_VALBZ_amount = bond_highest_buy_VALBZ[0][0]
-        bond_lowest_sell_VALBZ_amount = bond_lowest_sell_VALBZ[0][0]
+        #valbz_lowest_sell_VALBZ = message["sell"]
+        #valbz_highest_buy_VALBZ = message["buy"]
+        #if len(valbz_lowest_sell__VALBZ) == 0 or len(valbz_highest_buy_VALBZ == 0):
+        #    return
+        #valbz_highest_buy_VALBZ_amount = valbz_highest_buy_VALBZ[0][0]
+        #valbz_lowest_sell_VALBZ_amount = valbz_lowest_sell_VALBZ[0][0]
 
 def parse_fill(message):
     amount = message['size']
